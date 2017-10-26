@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 /**
  *
@@ -15,11 +16,12 @@ import android.view.ViewGroup;
 
 public class GameFragment extends Fragment {
     View myView;
-
+    String [] listGames = {"1", "2", "3"};
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.game_screen, container, false);
+
         return myView;
     }
 }
