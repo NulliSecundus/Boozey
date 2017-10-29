@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  *
@@ -23,13 +24,18 @@ public class GameFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.game_screen, container, false);
-
-        ListView gameListView = myView.findViewById(R.id.gamesListView);
+        final ListView gameListView = myView.findViewById(R.id.gamesListView);
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_expandable_list_item_1,
                 installedGames);
         gameListView.setAdapter(listViewAdapter);
-
+        gameListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String test = (String) gameListView.getItemAtPosition(i);
+                Toast.makeText(getActivity(), test, Toast.LENGTH_SHORT).show();
+            }
+        });
         return myView;
     }
 
