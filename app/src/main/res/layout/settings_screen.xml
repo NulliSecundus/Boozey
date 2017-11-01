@@ -2,6 +2,7 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:stretchColumns="1"
     android:layout_marginLeft="16pt"
     android:layout_marginTop="?android:attr/actionBarSize">
 
@@ -51,7 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/logout_settings"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:clickable="true"/>
     </TableRow>
 
 </TableLayout>

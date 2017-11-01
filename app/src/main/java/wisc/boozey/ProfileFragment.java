@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 public class ProfileFragment extends Fragment {
     View myView;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
