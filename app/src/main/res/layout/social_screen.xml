@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:stretchColumns="1"
-    android:layout_marginLeft="6pt"
+    android:layout_marginLeft="4pt"
     android:layout_marginTop="?android:attr/actionBarSize">
 
     <TableRow
@@ -19,7 +19,13 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:text="Name"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/sort_timesplayed"
@@ -28,7 +34,8 @@
             android:clickable="true"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="Times Played" />
+            android:text="#Plays"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/sort_win"
@@ -37,7 +44,8 @@
             android:clickable="true"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="W" />
+            android:text="W"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/sort_lose"
@@ -46,7 +54,8 @@
             android:clickable="true"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="L" />
+            android:text="L"
+            android:textSize="25sp" />
 
 
     </TableRow>
@@ -55,6 +64,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_account_box_black_48dp" />
 
         <TextView
             android:id="@+id/friend1_name"
@@ -68,21 +82,24 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="45" />
+            android:text=" 45"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="23" />
+            android:text=" 23"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="22" />
+            android:text=" 22"
+            android:textSize="20sp" />
 
 
     </TableRow>
@@ -91,6 +108,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_account_box_black_48dp" />
 
         <TextView
             android:id="@+id/friend2_name"
@@ -104,21 +126,24 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="45" />
+            android:text=" 24"
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="23" />
+            android:text=" 17"
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="22" />
+            android:text="  7"
+            android:textSize="20sp"/>
 
 
     </TableRow>
@@ -127,6 +152,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_account_box_black_48dp"/>
 
         <TextView
             android:id="@+id/Notification"
@@ -140,7 +170,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="45" />
+            android:text=" - "
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -148,7 +179,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="23" />
+            android:text=" - "
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -156,7 +188,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="22" />
+            android:text=" - "
+            android:textSize="20sp"/>
 
 
     </TableRow>
