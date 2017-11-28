@@ -3,32 +3,25 @@ package wisc.boozey;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
-import com.androidquery.AQuery;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.Arrays;
 
+
+/*
+   https://developers.facebook.com/docs/facebook-login/android
+   Referenced the facebook developers page to help implement facebook login and logout
+ */
 public class LoginActivity extends AppCompatActivity {
 
-    private AQuery aQuery;
-    private ImageView ivpic;
-    private TextView tvdetails;
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
@@ -36,42 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
-            GraphRequest request = GraphRequest.newMeRequest(
-                    loginResult.getAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            Log.v("LoginActivity", response.toString());
-
-                            // Application code
-                            try {
-                                Log.d("tttttt",object.getString("id"));
-                                String birthday="";
-                                if(object.has("birthday")){
-                                    birthday = object.getString("birthday"); // 01/31/1980 format
-                                }
-
-                                String fnm = object.getString("first_name");
-                                String lnm = object.getString("last_name");
-                                String mail = object.getString("email");
-                                String gender = object.getString("gender");
-                                String fid = object.getString("id");
-                                tvdetails.setText("Name: "+fnm+" "+lnm+" \n"+"Email: "+mail+" \n"+"Gender: "+gender+" \n"+"ID: "+fid+" \n"+"Birth Date: "+birthday);
-                                aQuery.id(ivpic).image("https://graph.facebook.com/" + fid + "/picture?type=large");
-                                //https://graph.facebook.com/143990709444026/picture?type=large
-                                Log.d("aswwww","https://graph.facebook.com/"+fid+"/picture?type=large");
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    });
             startActivity(new Intent(LoginActivity.this, main.class));
             Bundle parameters = new Bundle();
             parameters.putString("fields", "id, first_name, last_name, email, gender, birthday, location");
-            request.setParameters(parameters);
-            request.executeAsync();
 
         }
 
@@ -93,16 +53,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         FacebookSdk.sdkInitialize(this);
         setContentView(R.layout.activity_login);
-
-        tvdetails = (TextView) findViewById(R.id.text);
-        ivpic = (ImageView) findViewById(R.id.ivpic);
-
         loginButton = (LoginButton) findViewById(R.id.btnfb);
-        aQuery = new AQuery(this);
-
         callbackManager = CallbackManager.Factory.create();
 
         accessTokenTracker= new AccessTokenTracker() {
