@@ -36,10 +36,10 @@ public class GameFragment extends Fragment{
         gameListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String test = (String) gameListView.getItemAtPosition(i);
-                Toast.makeText(getActivity(), test, Toast.LENGTH_SHORT).show();
+                String gameName = (String) gameListView.getItemAtPosition(i);
+                Toast.makeText(getActivity(), gameName, Toast.LENGTH_SHORT).show();
 
-                if(test.contentEquals("Test Game")){
+                if(gameName.contentEquals("Test Game")){
                     fragmentManager.beginTransaction()
                             .replace(R.id.main_layout, new TestGame())
                             .commit();

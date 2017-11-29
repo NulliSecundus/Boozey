@@ -3,37 +3,43 @@ package wisc.boozey;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import wisc.boozey.game.objects.*;
 
 /**
  *
  */
 
 public class GameView extends View {
-    public Rect rectangle;
-    private Paint paint;
-    Drawable tenClubs = getResources().getDrawable(R.mipmap.ic_10_of_clubs);
+    public List<GameObject> gameObjects;
+    private Canvas canvas;
 
-    public GameView(Context context) {
+    public GameView(Context context, List<GameObject> gameObjects) {
         super(context);
-        int x = 150;
-        int y = 250;
-        int width = 800;
-        int height = 800;
+        this.gameObjects = gameObjects;
 
-        rectangle = new Rect(x, y, x + width, y + height);
-        paint = new Paint();
-        paint.setColor(Color.BLACK);
+    }
+
+    public Canvas getCanvas(){
+        return canvas;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.GRAY);
-        //canvas.drawRect(rectangle, paint);
-        tenClubs.setBounds(rectangle);
-        tenClubs.draw(canvas);
+        this.canvas = canvas;
+        canvas.drawColor(Color.rgb(20,70,20));
+
+        for(GameObject g : gameObjects){
+            g.draw(canvas);
+        }
     }
+
+
 }
