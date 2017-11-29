@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 /**
- * Created by Brendan on 11/29/2017.
+ *
  */
 
 public class RectButtonObject extends GameObject {
@@ -20,8 +20,6 @@ public class RectButtonObject extends GameObject {
         bounds = new Rect(10, 10, 50, 50);
         //button.setClipBounds(bounds);
         LinearLayout linearLayout = new LinearLayout(context);
-        button.setText(" Button Programmatically ");
-        button.setTextSize(20);
         button.setGravity(Gravity.CENTER);
         linearLayout.addView(button);
 
