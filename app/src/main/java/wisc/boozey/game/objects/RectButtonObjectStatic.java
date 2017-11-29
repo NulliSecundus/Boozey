@@ -11,11 +11,11 @@ import android.widget.LinearLayout;
  *
  */
 
-public class RectButtonObject extends GameObject {
+public class RectButtonObjectStatic extends StaticGameObject {
     private Button button;
     private Rect bounds;
 
-    public RectButtonObject(Context context){
+    public RectButtonObjectStatic(Context context){
         button = new Button(context);
         bounds = new Rect(10, 10, 50, 50);
         //button.setClipBounds(bounds);

@@ -7,7 +7,7 @@ import android.graphics.drawable.ShapeDrawable;
  *
  */
 
-public abstract class GameObject extends ShapeDrawable {
+public abstract class StaticGameObject extends ShapeDrawable {
     public int posx, posy;
 
     public void moveTo(int x, int y){

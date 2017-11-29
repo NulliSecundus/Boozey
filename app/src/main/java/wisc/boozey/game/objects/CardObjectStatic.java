@@ -10,7 +10,7 @@ import wisc.boozey.R;
  *
  */
 
-public class CardObject extends GameObject {
+public class CardObjectStatic extends StaticGameObject {
     private int width;
     private int height;
     private Rect bounds;
@@ -18,7 +18,7 @@ public class CardObject extends GameObject {
     private String suit;
     private int value;
 
-    public CardObject(int x, int y, int value, String suit, Context context){
+    public CardObjectStatic(int x, int y, int value, String suit, Context context){
         posx = x;
         posy = y;
         width = 500;

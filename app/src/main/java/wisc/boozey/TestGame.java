@@ -4,17 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import wisc.boozey.game.objects.*;
-import wisc.boozey.GameView;
 
 /**
  *
@@ -22,31 +22,54 @@ import wisc.boozey.GameView;
 
 public class TestGame extends AbstractGame {
 
-    private View gameView;
+    private GameStaticView gameStaticView;
+    private GameViewGroup gameViewGroup;
+    private boolean flip = true;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        gameObjects = new ArrayList<>();
+        staticGameObjects = new ArrayList<>();
         Context context = getContext();
-        addGameObject(new CardObject(10, 700, 10, "clubs", context));
-        addGameObject(new CardObject(350, 700, 10, "clubs", context));
-        addGameObject(new CardObject(200, 150, 0, "back", context));
-        addGameObject(new CardObject(250, 150, 0, "back", context));
-        addGameObject(new CardObject(300, 150, 0, "back", context));
-        addGameObject(new CardObject(350, 150, 0, "back", context));
-        addGameObject(new CardObject(400, 150, 0, "back", context));
-        addGameObject(new CardObject(450, 150, 0, "back", context));
+        addGameObject(new CardObjectStatic(300, 700, 10, "clubs", context));
+        addGameObject(new CardObjectStatic(200, 150, 0, "back", context));
+        addGameObject(new CardObjectStatic(250, 150, 0, "back", context));
+        addGameObject(new CardObjectStatic(300, 150, 0, "back", context));
+        addGameObject(new CardObjectStatic(350, 150, 0, "back", context));
+        addGameObject(new CardObjectStatic(400, 150, 0, "back", context));
+        addGameObject(new CardObjectStatic(450, 150, 0, "back", context));
 
-//        LinearLayout testLayout = new LinearLayout(context);
-//        Button myButton = new Button(context);
-//        myButton.setLayoutParams(new LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT,
-//                LinearLayout.LayoutParams.MATCH_PARENT));
-//        testLayout.addView(myButton);
+        gameStaticView = new GameStaticView(context, staticGameObjects);
+        gameViewGroup = new GameViewGroup(context, gameStaticView);
 
-        gameView = new GameView(context, gameObjects);
-        return gameView;
+        Button flipCardButton = new Button(context);
+        flipCardButton.setText("Flip Card");
+        flipCardButton.setTextSize(20);
+        flipCardButton.setGravity(Gravity.CENTER);
+        flipCardButton.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT));
+        gameViewGroup.addView(flipCardButton);
+
+        flipCardButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(flip){
+                    staticGameObjects.remove(0);
+                    staticGameObjects.add(0,
+                            new CardObjectStatic(300, 700, 0, "clubs", getContext()));
+                    flip = false;
+                }else{
+                    staticGameObjects.remove(0);
+                    staticGameObjects.add(0,
+                            new CardObjectStatic(300, 700, 10, "clubs", getContext()));
+                    flip = true;
+                }
+                gameStaticView.setStaticGameObjects(staticGameObjects);
+                gameStaticView.invalidate();
+            }
+        });
+
+        return gameViewGroup;
     }
 
     @Override
@@ -55,8 +78,13 @@ public class TestGame extends AbstractGame {
     }
 
     @Override
-    public void addGameObject(GameObject gameObject) {
-        gameObjects.add(gameObject);
+    public void addGameObject(StaticGameObject staticGameObject) {
+        staticGameObjects.add(staticGameObject);
+    }
+
+    @Override
+    public void removeGameObject(StaticGameObject staticGameObject) {
+        gameStaticView.staticGameObjects.remove(staticGameObject);
     }
 
     @Override

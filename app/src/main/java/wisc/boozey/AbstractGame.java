@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import wisc.boozey.game.objects.*;
 public abstract class AbstractGame extends Fragment {
     private String name;
     private String description;
-    List<GameObject> gameObjects;
+    ArrayList<StaticGameObject> staticGameObjects;
 
     @Nullable
     @Override
@@ -29,12 +30,14 @@ public abstract class AbstractGame extends Fragment {
         //TODO: implement this method to add to global games list
     }
 
-    // Add a new GameObject
-    public abstract void addGameObject(GameObject gameObject);
+    // Add a new StaticGameObject
+    public abstract void addGameObject(StaticGameObject staticGameObject);
 
-    // Iterate through gameObjects list and draw each object
+    public abstract void removeGameObject(StaticGameObject staticGameObject);
+
+    // Iterate through staticGameObjects list and draw each object
     public void drawAllGameObjects(Canvas canvas){
-        for( GameObject g : gameObjects){
+        for( StaticGameObject g : staticGameObjects){
             g.draw(canvas);
         }
     }
