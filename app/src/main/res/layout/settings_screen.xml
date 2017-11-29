@@ -4,8 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:stretchColumns="1"
-    android:layout_marginLeft="16pt"
-    android:layout_marginTop="?android:attr/actionBarSize"
+    android:layout_marginLeft="16pt">
     tools:context="wisc.boozey.LoginActivity">
 
     <TableRow

@@ -24,19 +24,6 @@ public class SocialFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.social_screen, container, false);
-        String[]names = {Chris.getName() + " 2 1 1", Dan.getName() + " 3 2 1", Brendan.getName() + " 3 1 2"};
-        final ListView profileViewList = myView.findViewById(R.id.profileViewList);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_expandable_list_item_1,
-                names);
-        profileViewList.setAdapter(listViewAdapter);
-        profileViewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String test = (String) profileViewList.getItemAtPosition(i);
-                Toast.makeText(getActivity(), test, Toast.LENGTH_SHORT).show();
-            }
-        });
         return myView;
     }
 }
