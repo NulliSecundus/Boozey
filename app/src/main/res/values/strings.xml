@@ -11,6 +11,9 @@
     <string name="logout_settings">Logout</string>
     <string name="title_activity_login">Sign in</string>
 
+    <!-- facebook -->
+    <string name="facebook_app_id">143388863085329</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

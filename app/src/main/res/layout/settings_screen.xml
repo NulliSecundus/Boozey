@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:stretchColumns="1"
     android:layout_marginLeft="16pt">
+    tools:context="wisc.boozey.LoginActivity">
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <Button
             android:id="@+id/Notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/notification_settings"
-            android:textSize="20sp" />
+            android:background="@android:color/transparent"
+            android:enabled="false"
+            android:textColor="@color/colorPrimary"/>
 
         <Switch
             android:id="@+id/notif_switch"
@@ -28,12 +32,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <Button
             android:id="@+id/Location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:text="@string/location_settings"
-            android:textSize="20sp" />
+            android:enabled="false"
+            android:textColor="@color/colorPrimary"/>
 
         <Switch
             android:id="@+id/loc_switch"
@@ -46,13 +52,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <Button
             android:id="@+id/Logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/logout_settings"
-            android:textSize="20sp"
-            android:clickable="true"/>
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"/>
     </TableRow>
 
 </TableLayout>
