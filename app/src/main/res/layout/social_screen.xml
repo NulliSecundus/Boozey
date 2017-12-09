@@ -65,13 +65,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_account_box_black_48dp" />
+            app:srcCompat="@mipmap/ic_chris" />
 
         <TextView
             android:id="@+id/friend1_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Francis Doe"
+            android:text="Chris Scheaffer"
             android:textSize="20sp" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text=" 45"
+            android:text="45"
             android:textSize="20sp" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text=" 23"
+            android:text="23"
             android:textSize="20sp" />
 
         <TextView
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text=" 22"
+            android:text="22"
             android:textSize="20sp" />
 
 
@@ -109,13 +109,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_account_box_black_48dp" />
+            app:srcCompat="@mipmap/ic_dan" />
 
         <TextView
             android:id="@+id/friend2_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lina Wen"
+            android:text="Dan Moskal"
             android:textSize="20sp" />
 
         <TextView
@@ -123,24 +123,24 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text=" 24"
-            android:textSize="20sp"/>
+            android:text="24"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text=" 17"
-            android:textSize="20sp"/>
+            android:text="17"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text="  7"
-            android:textSize="20sp"/>
+            android:text="7"
+            android:textSize="20sp" />
 
 
     </TableRow>
@@ -153,13 +153,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_account_box_black_48dp"/>
+            app:srcCompat="@mipmap/ic_vin" />
 
         <TextView
             android:id="@+id/Notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Angus Schmidt"
+            android:text="Vincent Rosati"
             android:textSize="20sp" />
 
         <TextView
@@ -167,8 +167,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text=" - "
-            android:textSize="20sp"/>
+            android:text="12"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView3"
@@ -176,8 +176,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text=" - "
-            android:textSize="20sp"/>
+            android:text="3"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -185,8 +185,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="6pt"
             android:paddingRight="6pt"
-            android:text=" - "
-            android:textSize="20sp"/>
+            android:text="9"
+            android:textSize="20sp" />
 
 
     </TableRow>
