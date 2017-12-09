@@ -1,5 +1,4 @@
 package wisc.boozey;
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +13,11 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import java.util.Arrays;
-
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import android.util.Log;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 /*
    https://developers.facebook.com/docs/facebook-login/android
@@ -26,14 +29,31 @@ public class LoginActivity extends AppCompatActivity {
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
     private LoginButton loginButton;
-    private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
-        @Override
-        public void onSuccess(LoginResult loginResult) {
-            startActivity(new Intent(LoginActivity.this, main.class));
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id, first_name, last_name, email, gender, birthday, location");
-
-        }
+        private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                try {
+                                    //DAN THIS IS WHERE YOU CAN ACCESS THE NAME OF THE USER, JUST
+                                    //NEED TO STORE IT SOMEWHERE TO USE IN THE GAME SCREEN OR PUT
+                                    //IT DIRECTLY TO THE PROFILE SCREEN
+                                    String first_name = object.getString("first_name");
+                                    String last_name = object.getString("last_name");
+                                    System.out.println(first_name + " " + last_name);
+                                }catch (JSONException e) {
+                                    Log.e("Boozey", "unexpected JSON exception", e);
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id, first_name, last_name, email, gender, birthday, location");
+                request.setParameters(parameters);
+                request.executeAsync();
+                startActivity(new Intent(LoginActivity.this, main.class));
+            }
 
         @Override
         public void onCancel() {
