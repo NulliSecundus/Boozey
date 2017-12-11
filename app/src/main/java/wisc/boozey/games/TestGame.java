@@ -4,12 +4,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
+
 import java.util.ArrayList;
 import wisc.boozey.GameStaticView;
 import wisc.boozey.GameViewGroup;
@@ -24,13 +22,20 @@ public class TestGame extends AbstractGame {
     private GameStaticView gameStaticView;
     private GameViewGroup gameViewGroup;
     private boolean flip = true;
-    private ButtonObject flipCardButton;
+    private TextButtonObject flipCardButton;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         staticGameObjects = new ArrayList<>();
+        dynamicGameObjects = new ArrayList<>();
+
         Context context = getContext();
+
+        gameStaticView = new GameStaticView(context, staticGameObjects);
+        gameViewGroup = new GameViewGroup(context, gameStaticView, dynamicGameObjects);
+
+        // Create the static objects, populate the container
         addStaticGameObject(new CardObjectStatic(300, 700, 6, "spades", context));
         addStaticGameObject(new CardObjectStatic(200, 150, 0, "back", context));
         addStaticGameObject(new CardObjectStatic(250, 150, 0, "back", context));
@@ -39,22 +44,13 @@ public class TestGame extends AbstractGame {
         addStaticGameObject(new CardObjectStatic(400, 150, 0, "back", context));
         addStaticGameObject(new CardObjectStatic(450, 150, 0, "back", context));
 
-        gameStaticView = new GameStaticView(context, staticGameObjects);
-        gameViewGroup = new GameViewGroup(context, gameStaticView);
+        //flipCardButton = new TextButtonObject("Flip Card", gameViewGroup, context);
 
-        flipCardButton = new ButtonObject("Flip Card", gameViewGroup, context);
-
-        /*
-        Button flipCardButton = new Button(context);
-        flipCardButton.setText("Flip Card");
-        flipCardButton.setTextSize(20);
-        flipCardButton.setGravity(Gravity.CENTER);
-        flipCardButton.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
-        gameViewGroup.addView(flipCardButton);
-
-        */
+        // Create the dynamic objects, populate the container
+        flipCardButton = new TextButtonObject("Flip Card", 300, 1275, 300, 125, gameViewGroup, context);
+        addDynamicGameObject(flipCardButton);
+        addDynamicGameObject(new TextButtonObject("Button 1", 0, 1400, 550, 0, gameViewGroup, context));
+        addDynamicGameObject(new TextButtonObject("Button 2", 550, 1400, 0, 0, gameViewGroup, context));
 
         flipCardButton.getButton().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,7 +70,8 @@ public class TestGame extends AbstractGame {
             }
         });
 
-
+        // Sync the dynamic object container
+        gameViewGroup.setDynamicGameObjects(dynamicGameObjects);
         return gameViewGroup;
     }
 
@@ -91,6 +88,11 @@ public class TestGame extends AbstractGame {
     @Override
     public void removeStaticGameObject(StaticGameObject staticGameObject) {
         staticGameObjects.remove(staticGameObject);
+    }
+
+    @Override
+    public void addDynamicGameObject(DynamicGameObject dynamicGameObject) {
+        dynamicGameObjects.add(dynamicGameObject);
     }
 
     @Override
