@@ -64,6 +64,14 @@ public class CardObjectStatic extends StaticGameObject {
         cardPic.setBounds(bounds);
     }
 
+    public String getSuit(){
+        return suit;
+    }
+
+    public int getValue(){
+        return value;
+    }
+
     private Drawable setPic(int value, String suit, Context context){
         switch (value){
             case 1:
