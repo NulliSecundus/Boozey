@@ -36,7 +36,7 @@ public class TestGame extends AbstractGame {
         gameViewGroup = new GameViewGroup(context, gameStaticView, dynamicGameObjects);
 
         // Create the static objects, populate the container
-        addStaticGameObject(new CardObjectStatic(300, 700, 6, "spades", context));
+        addStaticGameObject(new CardObjectStatic(350, 700, 6, "spades", context));
         addStaticGameObject(new CardObjectStatic(200, 150, 0, "back", context));
         addStaticGameObject(new CardObjectStatic(250, 150, 0, "back", context));
         addStaticGameObject(new CardObjectStatic(300, 150, 0, "back", context));
@@ -57,12 +57,12 @@ public class TestGame extends AbstractGame {
                 if(flip){
                     staticGameObjects.remove(0);
                     staticGameObjects.add(0,
-                            new CardObjectStatic(300, 700, 0, "back", getContext()));
+                            new CardObjectStatic(350, 700, 0, "back", getContext()));
                     flip = false;
                 }else{
                     staticGameObjects.remove(0);
                     staticGameObjects.add(0,
-                            new CardObjectStatic(300, 700, getContext()));
+                            new CardObjectStatic(350, 700, getContext()));
                     flip = true;
                 }
                 gameStaticView.setStaticGameObjects(staticGameObjects);

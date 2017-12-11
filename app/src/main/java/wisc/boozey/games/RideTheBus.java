@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,9 @@ import wisc.boozey.game.objects.TextButtonObject;
 public class RideTheBus extends AbstractGame {
     private GameStaticView gameStaticView;
     private GameViewGroup gameViewGroup;
+    private TextButtonObject red;
+    private TextButtonObject black;
+    //private CardObjectStatic mysteryCard;
 
     @Nullable
     @Override
@@ -37,15 +41,59 @@ public class RideTheBus extends AbstractGame {
         gameViewGroup = new GameViewGroup(context, gameStaticView, dynamicGameObjects);
 
         // Create the static objects, populate the container
-        addStaticGameObject(new CardObjectStatic(350, 500, 0, "back", context));
+        addStaticGameObject(new CardObjectStatic(350, 400, 0, "back", context));
 
         // Create the dynamic objects, populate the container
-        addDynamicGameObject(new TextButtonObject("Button 1", 50, 1300, 550, 100, gameViewGroup, context));
-        addDynamicGameObject(new TextButtonObject("Button 2", 550, 1300, 50, 100, gameViewGroup, context));
+        red = new TextButtonObject("RED", 50, 1100, 550, 300, gameViewGroup, context);
+        addDynamicGameObject(red);
+        black = new TextButtonObject("BLACK", 550, 1100, 50, 300, gameViewGroup, context);
+        addDynamicGameObject(black);
+
+        red.getButton().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onRedClick();
+            }
+        });
+
+        black.getButton().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onBlackClick();
+            }
+        });
 
         // Sync the dynamic object container
         gameViewGroup.setDynamicGameObjects(dynamicGameObjects);
         return gameViewGroup;
+    }
+
+    private void onRedClick(){
+        staticGameObjects.remove(0);
+        staticGameObjects.add(0, new CardObjectStatic(350, 400, getContext()));
+
+        String testSuit = ((CardObjectStatic) staticGameObjects.get(0)).getSuit();
+        if(testSuit.contentEquals("hearts") || testSuit.contentEquals("diamonds")){
+            Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getActivity(), "Incorrect!", Toast.LENGTH_SHORT).show();
+        }
+
+        gameStaticView.setStaticGameObjects(staticGameObjects);
+        gameStaticView.invalidate();
+    }
+
+    private void onBlackClick(){
+        staticGameObjects.remove(0);
+        staticGameObjects.add(0, new CardObjectStatic(350, 400, getContext()));
+
+        String testSuit = ((CardObjectStatic) staticGameObjects.get(0)).getSuit();
+        if(testSuit.contentEquals("spades") || testSuit.contentEquals("clubs")){
+            Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getActivity(), "Incorrect!", Toast.LENGTH_SHORT).show();
+        }
+
+        gameStaticView.setStaticGameObjects(staticGameObjects);
+        gameStaticView.invalidate();
     }
 
     @Override
