@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import wisc.boozey.GameViewGroup;
-
 /**
  *
  */
@@ -21,7 +19,7 @@ public class TextButtonObject extends DynamicGameObject {
         left = 0;
         top = 0;
         right = 0;
-        bottom = 0;
+        height = 50;
         button = new Button(context);
         button.setText(text);
         button.setTextSize(20);
@@ -29,15 +27,14 @@ public class TextButtonObject extends DynamicGameObject {
         button.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
-        //gameViewGroup.addView(button);
     }
 
-    public TextButtonObject(String text, int l, int t, int r, int b, Context context) {
+    public TextButtonObject(String text, int l, int t, int r, int h, Context context) {
         super(context);
         left = l;
         top = t;
         right = r;
-        bottom = b;
+        height = h;
         button = new Button(context);
         button.setText(text);
         button.setTextSize(20);
@@ -45,23 +42,22 @@ public class TextButtonObject extends DynamicGameObject {
         button.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
-        //gameViewGroup.addView(button);
     }
 
     public Button getButton(){
         return button;
     }
 
-    public void setPosition(int l, int t, int r, int b){
+    public void setPosition(int l, int t, int r, int h){
         left = l;
         top = t;
         right = r;
-        bottom = b;
+        height = h;
     }
 
     @Override
-    public void layout(int l, int t, int r, int b) {
-        button.layout(l, t, r, b);
+    public void layout(int l, int t, int r, int h) {
+        button.layout(l, t, r, h);
     }
 
     @Override

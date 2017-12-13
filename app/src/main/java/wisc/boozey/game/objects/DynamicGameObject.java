@@ -12,6 +12,7 @@ public abstract class DynamicGameObject extends View {
     public int top;
     public int right;
     public int bottom;
+    public int height;
 
     public DynamicGameObject(Context context) {
         super(context);

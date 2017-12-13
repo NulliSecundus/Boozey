@@ -57,9 +57,9 @@ public class RideTheBus extends AbstractGame {
         addStaticGameObject(new TextObjectSimple(115, 250, "GUESS THE COLOR", 32, context));
 
         // Create the dynamic objects, populate the container
-        leftButton = new TextButtonObject("RED", 50, 1100, 550, 300, context);
+        leftButton = new TextButtonObject("RED", 50, 1100, 550, 140, context);
         addDynamicGameObject(leftButton);
-        rightButton = new TextButtonObject("BLACK", 550, 1100, 50, 300, context);
+        rightButton = new TextButtonObject("BLACK", 550, 1100, 50, 140, context);
         addDynamicGameObject(rightButton);
         resultCard = new CardObjectStatic(350, 400, getContext());
 
@@ -92,7 +92,7 @@ public class RideTheBus extends AbstractGame {
                 resultText = new TextObjectSimple(355, 1030, "Correct!", 32, context);
                 boolCont = false;
                 addStaticGameObject(resultText);
-                cont = new TextButtonObject("Continue", 300, 1300, 300, 100, context);
+                cont = new TextButtonObject("Continue", 300, 1300, 300, 140, context);
                 addDynamicGameObject(cont);
                 cont.getButton().setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -123,7 +123,7 @@ public class RideTheBus extends AbstractGame {
                 resultText = new TextObjectSimple(355, 1030, "Correct!", 32, context);
                 boolCont = false;
                 addStaticGameObject(resultText);
-                cont = new TextButtonObject("Continue", 300, 1300, 300, 100, context);
+                cont = new TextButtonObject("Continue", 300, 1300, 300, 140, context);
                 addDynamicGameObject(cont);
                 cont.getButton().setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -166,9 +166,9 @@ public class RideTheBus extends AbstractGame {
         gameStaticView.invalidate();
 
         // Populate the dynamic game objects
-        leftButton = new TextButtonObject("HIGHER", 50, 1100, 550, 300, context);
+        leftButton = new TextButtonObject("HIGHER", 50, 1100, 550, 140, context);
         addDynamicGameObject(leftButton);
-        rightButton = new TextButtonObject("LOWER", 550, 1100, 50, 300, context);
+        rightButton = new TextButtonObject("LOWER", 550, 1100, 50, 140, context);
         addDynamicGameObject(rightButton);
 
         leftButton.getButton().setOnClickListener(new View.OnClickListener() {
@@ -200,7 +200,7 @@ public class RideTheBus extends AbstractGame {
             resultText = new TextObjectSimple(355, 1030, "Correct!", 32, context);
             boolCont = false;
             addStaticGameObject(resultText);
-            cont = new TextButtonObject("Continue", 300, 1300, 300, 100, context);
+            cont = new TextButtonObject("Continue", 300, 1300, 300, 140, context);
             addDynamicGameObject(cont);
             cont.getButton().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -230,7 +230,7 @@ public class RideTheBus extends AbstractGame {
             resultText = new TextObjectSimple(355, 1030, "Correct!", 32, context);
             boolCont = false;
             addStaticGameObject(resultText);
-            cont = new TextButtonObject("Continue", 300, 1300, 300, 100, context);
+            cont = new TextButtonObject("Continue", 300, 1300, 300, 140, context);
             addDynamicGameObject(cont);
             cont.getButton().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -274,9 +274,9 @@ public class RideTheBus extends AbstractGame {
         gameStaticView.invalidate();
 
         // Populate the dynamic game objects
-        leftButton = new TextButtonObject("INSIDE", 50, 1100, 550, 300, context);
+        leftButton = new TextButtonObject("INSIDE", 50, 1100, 550, 140, context);
         addDynamicGameObject(leftButton);
-        rightButton = new TextButtonObject("OUTSIDE", 550, 1100, 50, 300, context);
+        rightButton = new TextButtonObject("OUTSIDE", 550, 1100, 50, 140, context);
         addDynamicGameObject(rightButton);
 
         leftButton.getButton().setOnClickListener(new View.OnClickListener() {
@@ -310,7 +310,7 @@ public class RideTheBus extends AbstractGame {
             resultText = new TextObjectSimple(355, 1030, "Correct!", 32, context);
             boolCont = false;
             addStaticGameObject(resultText);
-            cont = new TextButtonObject("Continue", 300, 1300, 300, 100, context);
+            cont = new TextButtonObject("Continue", 300, 1300, 300, 140, context);
             addDynamicGameObject(cont);
             cont.getButton().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -342,7 +342,7 @@ public class RideTheBus extends AbstractGame {
             resultText = new TextObjectSimple(355, 1030, "Correct!", 32, context);
             boolCont = false;
             addStaticGameObject(resultText);
-            cont = new TextButtonObject("Continue", 300, 1300, 300, 100, context);
+            cont = new TextButtonObject("Continue", 300, 1300, 300, 140, context);
             addDynamicGameObject(cont);
             cont.getButton().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -388,13 +388,13 @@ public class RideTheBus extends AbstractGame {
         gameStaticView.invalidate();
 
         // Populate the dynamic game objects
-        leftButton = new TextButtonObject("SPADES", 50, 1100, 550, 300, context);
+        leftButton = new TextButtonObject("SPADES", 50, 1100, 550, 140, context);
         addDynamicGameObject(leftButton);
-        rightButton = new TextButtonObject("HEARTS", 550, 1100, 50, 300, context);
+        rightButton = new TextButtonObject("HEARTS", 550, 1100, 50, 140, context);
         addDynamicGameObject(rightButton);
-        bottomLeftButton = new TextButtonObject("DIAMONDS", 50, 1225, 550, 175, context);
+        bottomLeftButton = new TextButtonObject("DIAMONDS", 50, 1225, 550, 140, context);
         addDynamicGameObject(bottomLeftButton);
-        bottomRightButton = new TextButtonObject("CLUBS", 550, 1225, 50, 175, context);
+        bottomRightButton = new TextButtonObject("CLUBS", 550, 1225, 50, 140, context);
         addDynamicGameObject(bottomRightButton);
 
         leftButton.getButton().setOnClickListener(new View.OnClickListener() {
@@ -441,7 +441,7 @@ public class RideTheBus extends AbstractGame {
             resultText = new TextObjectSimple(355, 1030, "Correct!", 32, context);
             boolCont = false;
             addStaticGameObject(resultText);
-            cont = new TextButtonObject("Continue", 300, 1400, 300, 0, context);
+            cont = new TextButtonObject("Continue", 300, 1400, 300, 140, context);
             addDynamicGameObject(cont);
             cont.getButton().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -479,7 +479,7 @@ public class RideTheBus extends AbstractGame {
         gameStaticView.invalidate();
 
         // Populate the dynamic game objects
-        cont = new TextButtonObject("Continue", 300, 750, 300, 650, context);
+        cont = new TextButtonObject("Continue", 300, 750, 300, 140, context);
         addDynamicGameObject(cont);
         cont.getButton().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
