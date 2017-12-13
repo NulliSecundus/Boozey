@@ -18,6 +18,7 @@ public abstract class AbstractGame extends Fragment {
     private String name;
     private String description;
     ArrayList<StaticGameObject> staticGameObjects;
+    ArrayList<DynamicGameObject> dynamicGameObjects;
 
     @Nullable
     @Override
@@ -31,6 +32,8 @@ public abstract class AbstractGame extends Fragment {
     public abstract void addStaticGameObject(StaticGameObject staticGameObject);
 
     public abstract void removeStaticGameObject(StaticGameObject staticGameObject);
+
+    public abstract void addDynamicGameObject(DynamicGameObject dynamicGameObject);
 
     // Iterate through staticGameObjects list and draw each object
     public void drawAllGameObjects(Canvas canvas){

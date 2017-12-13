@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import wisc.boozey.games.RideTheBus;
 import wisc.boozey.games.TestGame;
 
 /**
@@ -20,7 +21,7 @@ import wisc.boozey.games.TestGame;
 
 public class GameFragment extends Fragment{
     View myView;
-    String[] installedGames = {"Test Game","Circle of Death","King's Cup","Ride the Bus",
+    String[] installedGames = {"Test Game","Ride The Bus","Circle of Death","King's Cup",
             "Game1","Game2","Game3","Game4","Game5","Game6","Game7","Game8","Game9"};
   
     @Nullable
@@ -44,6 +45,11 @@ public class GameFragment extends Fragment{
                 if(gameName.contentEquals("Test Game")){
                     fragmentManager.beginTransaction()
                             .replace(R.id.main_layout, new TestGame())
+                            .commit();
+                }
+                else if(gameName.contentEquals("Ride The Bus")){
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.main_layout, new RideTheBus())
                             .commit();
                 }
             }
