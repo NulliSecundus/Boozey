@@ -1,5 +1,6 @@
 package wisc.boozey.games;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -10,8 +11,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import wisc.boozey.GameFragment;
 import wisc.boozey.GameStaticView;
 import wisc.boozey.GameViewGroup;
+import wisc.boozey.R;
 import wisc.boozey.game.objects.CardObjectStatic;
 import wisc.boozey.game.objects.DynamicGameObject;
 import wisc.boozey.game.objects.StaticGameObject;
@@ -27,11 +30,14 @@ public class RideTheBus extends AbstractGame {
     private GameViewGroup gameViewGroup;
     private TextButtonObject leftButton;
     private TextButtonObject rightButton;
+    private TextButtonObject bottomLeftButton;
+    private TextButtonObject bottomRightButton;
     private Context context;
     private TextObjectSimple resultText;
     private TextButtonObject cont;
     private CardObjectStatic resultCard;
     private boolean boolCont;
+    private int misses;
 
     @Nullable
     @Override
@@ -41,6 +47,7 @@ public class RideTheBus extends AbstractGame {
 
         context = getContext();
         boolCont = true;
+        misses = 0;
 
         gameStaticView = new GameStaticView(context, staticGameObjects);
         gameViewGroup = new GameViewGroup(context, gameStaticView, dynamicGameObjects);
@@ -95,6 +102,7 @@ public class RideTheBus extends AbstractGame {
             } else {
                 resultText = new TextObjectSimple(330, 1030, "Incorrect!", 32, context);
                 boolCont = true;
+                misses++;
                 addStaticGameObject(resultText);
                 resultCard = new CardObjectStatic(350, 400, getContext());
             }
@@ -125,6 +133,7 @@ public class RideTheBus extends AbstractGame {
             } else {
                 resultText = new TextObjectSimple(330, 1030, "Incorrect!", 32, context);
                 boolCont = true;
+                misses++;
                 addStaticGameObject(resultText);
                 resultCard = new CardObjectStatic(350, 400, getContext());
             }
@@ -201,6 +210,7 @@ public class RideTheBus extends AbstractGame {
         }else{
             resultText = new TextObjectSimple(330, 1030, "Incorrect!", 32, context);
             boolCont = true;
+            misses++;
             addStaticGameObject(resultText);
             resultCard = new CardObjectStatic(550, 425, getContext());
         }
@@ -230,6 +240,7 @@ public class RideTheBus extends AbstractGame {
         }else{
             resultText = new TextObjectSimple(330, 1030, "Incorrect!", 32, context);
             boolCont = true;
+            misses++;
             addStaticGameObject(resultText);
             resultCard = new CardObjectStatic(550, 425, getContext());
         }
@@ -254,7 +265,7 @@ public class RideTheBus extends AbstractGame {
         // Populate gameStaticView with this round's objects
         addStaticGameObject(new CardObjectStatic(550, 425, 0, "back", context));
         addStaticGameObject(tmp1);
-        resultCard.moveTo(175, 500);
+        resultCard.moveTo(150, 500);
         resultCard.resize(300, 400);
         addStaticGameObject(resultCard);
         addStaticGameObject(new TextObjectSimple(85, 250, "INSIDE OR OUTSIDE?", 32, context));
@@ -303,12 +314,13 @@ public class RideTheBus extends AbstractGame {
             addDynamicGameObject(cont);
             cont.getButton().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    insideOutside();
+                    guessSuit();
                 }
             });
         }else{
             resultText = new TextObjectSimple(330, 1030, "Incorrect!", 32, context);
             boolCont = true;
+            misses++;
             addStaticGameObject(resultText);
             resultCard = new CardObjectStatic(550, 425, getContext());
         }
@@ -334,17 +346,149 @@ public class RideTheBus extends AbstractGame {
             addDynamicGameObject(cont);
             cont.getButton().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    insideOutside();
+                    guessSuit();
                 }
             });
         }else{
             resultText = new TextObjectSimple(330, 1030, "Incorrect!", 32, context);
             boolCont = true;
+            misses++;
             addStaticGameObject(resultText);
             resultCard = new CardObjectStatic(550, 425, getContext());
         }
 
         gameStaticView.invalidate();
+    }
+
+    private void guessSuit() {
+        boolCont = true;
+        StaticGameObject tmp1 = staticGameObjects.get(1);
+        StaticGameObject tmp2 = staticGameObjects.get(2);
+
+        // Clear objects from last round
+        staticGameObjects.clear();
+        dynamicGameObjects.clear();
+        gameViewGroup.setDynamicGameObjects(dynamicGameObjects);
+
+        // Reset the static and dynamic layers
+        gameStaticView.invalidate();
+        gameViewGroup.removeAllViews();
+        gameViewGroup.addView(gameStaticView);
+
+        // Populate gameStaticView with this round's objects
+        addStaticGameObject(new CardObjectStatic(600, 425, 0, "back", context));
+        addStaticGameObject(tmp1);
+        addStaticGameObject(tmp2);
+        resultCard.moveTo(200, 525);
+        resultCard.resize(300, 400);
+        addStaticGameObject(resultCard);
+        addStaticGameObject(new TextObjectSimple(150, 250, "GUESS THE SUIT", 32, context));
+        addStaticGameObject(new TextObjectSimple(175, 425, "Previous", 20, context));
+        resultCard = new CardObjectStatic(600, 425, getContext());
+        gameStaticView.invalidate();
+
+        // Populate the dynamic game objects
+        leftButton = new TextButtonObject("SPADES", 50, 1100, 550, 300, context);
+        addDynamicGameObject(leftButton);
+        rightButton = new TextButtonObject("HEARTS", 550, 1100, 50, 300, context);
+        addDynamicGameObject(rightButton);
+        bottomLeftButton = new TextButtonObject("DIAMONDS", 50, 1225, 550, 175, context);
+        addDynamicGameObject(bottomLeftButton);
+        bottomRightButton = new TextButtonObject("CLUBS", 550, 1225, 50, 175, context);
+        addDynamicGameObject(bottomRightButton);
+
+        leftButton.getButton().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(boolCont) {
+                    onSuitClick("spades");
+                }
+            }
+        });
+
+        rightButton.getButton().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(boolCont) {
+                    onSuitClick("hearts");
+                }
+            }
+        });
+
+        bottomLeftButton.getButton().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(boolCont) {
+                    onSuitClick("diamonds");
+                }
+            }
+        });
+
+        bottomRightButton.getButton().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(boolCont) {
+                    onSuitClick("clubs");
+                }
+            }
+        });
+    }
+
+    private void onSuitClick(String suit) {
+        staticGameObjects.remove(0);
+        staticGameObjects.add(0, resultCard);
+
+        removeDynamicGameObject(cont);
+        removeStaticGameObject(resultText);
+        String testSuit = resultCard.getSuit();
+        if(testSuit.contentEquals(suit)){
+            resultText = new TextObjectSimple(355, 1030, "Correct!", 32, context);
+            boolCont = false;
+            addStaticGameObject(resultText);
+            cont = new TextButtonObject("Continue", 300, 1400, 300, 0, context);
+            addDynamicGameObject(cont);
+            cont.getButton().setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    displayStats();
+                }
+            });
+        }else{
+            resultText = new TextObjectSimple(330, 1030, "Incorrect!", 32, context);
+            boolCont = true;
+            misses++;
+            addStaticGameObject(resultText);
+            resultCard = new CardObjectStatic(600, 425, getContext());
+        }
+
+        gameStaticView.invalidate();
+    }
+
+    private void displayStats() {
+        boolCont = true;
+
+        // Clear objects from last round
+        staticGameObjects.clear();
+        dynamicGameObjects.clear();
+        gameViewGroup.setDynamicGameObjects(dynamicGameObjects);
+
+        // Reset the static and dynamic layers
+        gameStaticView.invalidate();
+        gameViewGroup.removeAllViews();
+        gameViewGroup.addView(gameStaticView);
+
+        // Populate gameStaticView with the final stats
+        addStaticGameObject(new TextObjectSimple(125, 400, "FINAL STATISTICS", 32, context));
+        String drinksTaken = "Drinks Taken: " + misses;
+        addStaticGameObject(new TextObjectSimple(280, 600, drinksTaken, 24, context));
+        gameStaticView.invalidate();
+
+        // Populate the dynamic game objects
+        cont = new TextButtonObject("Continue", 300, 750, 300, 650, context);
+        addDynamicGameObject(cont);
+        cont.getButton().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.main_layout, new GameFragment())
+                        .commit();
+            }
+        });
     }
 
     @Override
