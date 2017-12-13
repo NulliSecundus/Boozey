@@ -19,4 +19,6 @@ public abstract class DynamicGameObject extends View {
 
     public abstract void layout(int i, int i1, int i2, int i3);
 
+    public abstract View getView();
+
 }

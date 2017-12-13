@@ -10,12 +10,8 @@ import android.graphics.drawable.ShapeDrawable;
 public abstract class StaticGameObject extends ShapeDrawable {
     public int posx, posy;
 
-    public void moveTo(int x, int y){
-        posx = x;
-        posy = y;
-    }
+    public abstract void moveTo(int x, int y);
 
     public abstract void draw(Canvas canvas);
 
-    public abstract void resize();
 }

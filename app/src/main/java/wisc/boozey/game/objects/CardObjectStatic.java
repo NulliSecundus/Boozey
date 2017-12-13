@@ -306,7 +306,10 @@ public class CardObjectStatic extends StaticGameObject {
 
     @Override
     public void moveTo(int x, int y) {
-        super.moveTo(x, y);
+        posx = x;
+        posy = y;
+        bounds = new Rect(posx, posy, posx + width, posy + height);
+        cardPic.setBounds(bounds);
     }
 
     @Override
@@ -314,8 +317,10 @@ public class CardObjectStatic extends StaticGameObject {
         cardPic.draw(canvas);
     }
 
-    @Override
-    public void resize() {
-
+    public void resize(int width, int height) {
+        this.width = width;
+        this.height = height;
+        bounds = new Rect(posx, posy, posx + width, posy + height);
+        cardPic.setBounds(bounds);
     }
 }

@@ -16,7 +16,7 @@ public class TextButtonObject extends DynamicGameObject {
     private Button button;
 
 
-    public TextButtonObject(String text, GameViewGroup gameViewGroup, Context context) {
+    public TextButtonObject(String text, Context context) {
         super(context);
         left = 0;
         top = 0;
@@ -29,10 +29,10 @@ public class TextButtonObject extends DynamicGameObject {
         button.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
-        gameViewGroup.addView(button);
+        //gameViewGroup.addView(button);
     }
 
-    public TextButtonObject(String text, int l, int t, int r, int b, GameViewGroup gameViewGroup, Context context) {
+    public TextButtonObject(String text, int l, int t, int r, int b, Context context) {
         super(context);
         left = l;
         top = t;
@@ -45,7 +45,7 @@ public class TextButtonObject extends DynamicGameObject {
         button.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
-        gameViewGroup.addView(button);
+        //gameViewGroup.addView(button);
     }
 
     public Button getButton(){
@@ -62,5 +62,10 @@ public class TextButtonObject extends DynamicGameObject {
     @Override
     public void layout(int l, int t, int r, int b) {
         button.layout(l, t, r, b);
+    }
+
+    @Override
+    public View getView() {
+        return button;
     }
 }

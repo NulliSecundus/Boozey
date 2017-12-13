@@ -47,10 +47,10 @@ public class TestGame extends AbstractGame {
         //flipCardButton = new TextButtonObject("Flip Card", gameViewGroup, context);
 
         // Create the dynamic objects, populate the container
-        flipCardButton = new TextButtonObject("Flip Card", 300, 1275, 300, 125, gameViewGroup, context);
+        flipCardButton = new TextButtonObject("Flip Card", 300, 1275, 300, 125, context);
         addDynamicGameObject(flipCardButton);
-        addDynamicGameObject(new TextButtonObject("Button 1", 0, 1400, 550, 0, gameViewGroup, context));
-        addDynamicGameObject(new TextButtonObject("Button 2", 550, 1400, 0, 0, gameViewGroup, context));
+        addDynamicGameObject(new TextButtonObject("Button 1", 0, 1400, 550, 0, context));
+        addDynamicGameObject(new TextButtonObject("Button 2", 550, 1400, 0, 0, context));
 
         flipCardButton.getButton().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -92,7 +92,22 @@ public class TestGame extends AbstractGame {
 
     @Override
     public void addDynamicGameObject(DynamicGameObject dynamicGameObject) {
-        dynamicGameObjects.add(dynamicGameObject);
+        try{
+            dynamicGameObjects.add(dynamicGameObject);
+            gameViewGroup.addView(dynamicGameObject.getView());
+        }catch (Exception e){
+
+        }
+    }
+
+    @Override
+    public void removeDynamicGameObject(DynamicGameObject dynamicGameObject) {
+        try{
+            gameViewGroup.removeView(dynamicGameObject.getView());
+            dynamicGameObjects.remove(dynamicGameObject);
+        }catch (Exception e){
+
+        }
     }
 
     @Override
