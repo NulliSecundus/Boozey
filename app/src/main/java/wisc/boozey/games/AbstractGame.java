@@ -35,6 +35,8 @@ public abstract class AbstractGame extends Fragment {
 
     public abstract void addDynamicGameObject(DynamicGameObject dynamicGameObject);
 
+    public abstract void removeDynamicGameObject(DynamicGameObject dynamicGameObject);
+
     // Iterate through staticGameObjects list and draw each object
     public void drawAllGameObjects(Canvas canvas){
         for( StaticGameObject g : staticGameObjects){

@@ -30,7 +30,7 @@ public class GameViewGroup extends ViewGroup {
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
         gameStaticView.layout(i, i1, i2, i3);
         for(DynamicGameObject g : dynamicGameObjects){
-            g.layout(i + g.left, i1 + g.top, i2 - g.right, i3 - g.bottom);
+            g.layout(i + g.left, i1 + g.top, i2 - g.right, i1 + g.top + g.height);
         }
     }
 }
