@@ -17,9 +17,9 @@ import android.widget.Toast;
 
 public class SocialFragment extends Fragment {
     View myView;
-    Friend Chris = new Friend("Chris",2,1,1);
-    Friend Dan = new Friend("Dan",3,2,1);
-    Friend Brendan = new Friend("Brendan",3,1,2);
+    Friend Chris = new Friend("Chris",2,1,1,0);
+    Friend Dan = new Friend("Dan",3,2,1,0);
+    Friend Brendan = new Friend("Brendan",3,1,2,0);
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

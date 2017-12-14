@@ -14,14 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.database.sqlite.SQLiteDatabase;
 
 public class main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;
-    SQLiteDatabase dtb;
-    DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +28,7 @@ public class main extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         // Create DB
-        db = new DBHandler(this);
+        DBHandler db = new DBHandler(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

@@ -9,11 +9,13 @@ public class Friend {
     private int played;
     private int w;
     private int l;
-    public Friend(String name, int played, int w, int l) {
+    private int isUser;
+    public Friend(String name, int played, int w, int l, int isUser) {
         this.name = name;
         this.played = played;
         this.w = w;
         this.l = l;
+        this.isUser = isUser;
     }
 
     public String getName() {
@@ -47,4 +49,8 @@ public class Friend {
     public void setL(int l) {
         this.l = l;
     }
+
+    public int getIsUser() { return isUser; }
+
+    public void setIsUser() { this.isUser = isUser; }
 }

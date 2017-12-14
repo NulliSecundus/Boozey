@@ -3,6 +3,7 @@ package wisc.boozey;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -17,12 +18,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "friend";
-    private static final String TABLE_FRIEND_DETAIL = "studentDetails";
+    private static final String TABLE_FRIEND_DETAIL = "friendDetails";
 
     private static final String KEY_NAME = "name";
     private static final String KEY_PLAYED = "played";
     private static final String KEY_WIN = "w";
     private static final String KEY_LOSS = "l";
+    private static final String KEY_USER = "isUser";
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,7 +37,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 + KEY_NAME + "TEXT,"
                 + KEY_PLAYED + "INTEGER,"
                 + KEY_WIN + "INTEGER,"
-                + KEY_LOSS + "INTEGER" + ")";
+                + KEY_LOSS + "INTEGER,"
+                + KEY_USER + "INTEGER," + ")";
         db.execSQL(CREATE_FRIEND_DETAIL_TABLE);
     }
 
@@ -55,6 +58,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(KEY_PLAYED, newFriend.getPlayed());
         values.put(KEY_WIN, newFriend.getW());
         values.put(KEY_LOSS, newFriend.getL());
+        values.put(KEY_USER, newFriend.getIsUser());
 
         db.insert(TABLE_FRIEND_DETAIL, null, values);
         db.close();
@@ -69,5 +73,37 @@ public class DBHandler extends SQLiteOpenHelper {
         args.put(KEY_LOSS, l);
 
         return db.update(TABLE_FRIEND_DETAIL, args, KEY_NAME + "=" + name, null) > 0;
+    }
+
+    public Friend getUser(int isUser) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_FRIEND_DETAIL, new String[] { KEY_NAME, KEY_PLAYED, KEY_WIN,
+                KEY_LOSS, KEY_USER }, KEY_USER + "=?", new String[] { String.valueOf(isUser) }, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        Friend friend = new Friend(cursor.getString(0), Integer.parseInt(cursor.getString(1)),
+                Integer.parseInt(cursor.getString(2)), Integer.parseInt(cursor.getString(3)),
+                Integer.parseInt(cursor.getString(4)));
+
+        return friend;
+    }
+
+    public Friend getFriend(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_FRIEND_DETAIL, new String[] { KEY_NAME, KEY_PLAYED,KEY_WIN,
+            KEY_LOSS }, KEY_NAME + "=?", new String[] { name }, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        Friend friend = new Friend(cursor.getString(0), Integer.parseInt(cursor.getString(1)),
+                Integer.parseInt(cursor.getString(2)), Integer.parseInt(cursor.getString(3)),
+                Integer.parseInt(cursor.getString(4)));
+
+        return friend;
     }
 }

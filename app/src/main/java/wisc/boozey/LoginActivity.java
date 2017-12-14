@@ -37,11 +37,12 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
                                 try {
-                                    //DAN THIS IS WHERE YOU CAN ACCESS THE NAME OF THE USER, JUST
-                                    //NEED TO STORE IT SOMEWHERE TO USE IN THE GAME SCREEN OR PUT
-                                    //IT DIRECTLY TO THE PROFILE SCREEN
+                                    DBHandler db = new DBHandler(getApplicationContext());
                                     String first_name = object.getString("first_name");
                                     String last_name = object.getString("last_name");
+                                    // The user is user Friend object when isUser is set to 1
+                                    Friend user = new Friend(first_name + " " + last_name, 0, 0, 0, 1);
+                                    db.addNewFriend(user);
                                     System.out.println(first_name + " " + last_name);
                                 }catch (JSONException e) {
                                     Log.e("Boozey", "unexpected JSON exception", e);
