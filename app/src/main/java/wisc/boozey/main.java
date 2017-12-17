@@ -22,7 +22,7 @@ public class main extends AppCompatActivity
     private NavigationView navigationView;
     SQLiteDatabase dtb;
     DBHandler db;
-
+    public static String NAME;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
